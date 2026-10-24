@@ -37,6 +37,37 @@ As a voice interaction entry, the XiaoZhi AI chatbot leverages the AI capabiliti
 
 ## Hardware
 
+### YOLO UNO + INMP441 + MAX98357A
+
+The `yolo-uno` board uses the existing Wi-Fi board and duplex I2S codec, with
+16 MB flash, 8 MB octal PSRAM, and no display. Microphone and speaker share
+BCLK and WS; both run at 24 kHz, with microphone audio resampled to 16 kHz.
+
+| Connection | YOLO UNO | INMP441 | MAX98357A |
+| --- | --- | --- | --- |
+| Microphone power | 3V3 | VDD | |
+| Amplifier power | 5V | | VIN |
+| Ground | GND | GND and L/R | GND |
+| Shared BCLK | GPIO5 (D2) | SCK | BCLK |
+| Shared WS | GPIO6 (D3) | WS | LRC |
+| Microphone data | GPIO7 (D4) | SD | |
+| Speaker data | GPIO8 (D5) | | DIN |
+| BOOT button | GPIO0 (onboard) | | |
+
+Connect the speaker between MAX98357A OUT+ and OUT-. Power the microphone
+from 3.3 V and secure all connections; a loose microphone wire can produce
+noise without intelligible speech. Click BOOT to toggle chat; hold it for
+Wi-Fi configuration.
+
+In an activated ESP-IDF v6.1 environment:
+
+```sh
+python scripts/build.py yolo-uno --name yolo-uno
+idf.py -p COM17 flash
+```
+
+Verify the serial port before flashing. See [board notes](main/boards/yolo-uno/README.md).
+
 ### Breadboard DIY Practice
 
 See the Feishu document tutorial:

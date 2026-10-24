@@ -1,0 +1,12 @@
+{
+    "type": "yolo-uno",
+    "target": "esp32s3",
+    "builds": [
+        {
+            "name": "yolo-uno",
+            "sdkconfig_append": [
+                "CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG=y"
+            ]
+        }
+    ]
+}

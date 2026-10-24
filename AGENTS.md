@@ -48,7 +48,18 @@ When adding a board or variant, update every relevant link in that chain. Includ
 
 ## Commands
 
-Source the intended ESP-IDF environment first:
+ESP-IDF v6.1 and `idf.py` are already installed on this Windows machine. The repository-root `.env` records `IDF_PATH`, `IDF_TOOLS_PATH`, and `IDF_PYTHON_ENV_PATH`; it is Git-ignored and is not loaded automatically by PowerShell or `idf.py`.
+
+Use the activated IDF PowerShell environment. In a fresh PowerShell session, initialize the existing installation before building:
+
+```powershell
+. 'C:\Espressif\tools\Microsoft.v6.1.PowerShell_profile.ps1'
+idf.py --version
+```
+
+Use this installer-generated profile for the local tool layout; the generic `export.ps1` reports missing tools with this installation.
+
+On other machines, source the intended ESP-IDF environment first:
 
 ```sh
 source /path/to/esp-idf/export.sh
